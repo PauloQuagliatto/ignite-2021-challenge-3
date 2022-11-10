@@ -27,30 +27,17 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps) {
-<<<<<<< HEAD
   console.log(postsPagination)
-  return (
-    <div>
-
-    </div>
-  )
-=======
  return(
   <div>
       <Header />
 
   </div>
  )
->>>>>>> b60efaf (changes to .env scss and pages)
-}
 
 export const getStaticProps = async () => {
   const prismic = getPrismicClient({});
-<<<<<<< HEAD
   const postsResponse = await prismic.getByType('posts');
-=======
-  const postsResponse = await prismic.getByType({});
->>>>>>> b60efaf (changes to .env scss and pages)
 
   return {
     props: {
