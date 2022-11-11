@@ -32,6 +32,8 @@ export default function Home({ postsPagination }: HomeProps) {
   <div>
       <Header />
 
+      <div>
+      </div>
   </div>
  )
 
