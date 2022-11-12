@@ -1,11 +1,10 @@
 :root {
---info: #BBBBBB;
---heading: #F8F8F8;
---body: #D7D7D7;
---highlight: #FF57B2;
---background: #1A1D23;
+  --info: #BBBBBB;
+  --heading: #F8F8F8;
+  --body: #D7D7D7;
+  --highlight: #FF57B2;
+  --background: #1A1D23;
 }
-@import './common.module.scss';
 
 * {
   box-sizing: border-box;

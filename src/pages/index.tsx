@@ -1,4 +1,7 @@
 import { GetStaticProps } from 'next';
+import { FiCalendar, FiUser } from 'react-icons/fi';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -27,15 +30,47 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps) {
-  console.log(postsPagination)
- return(
-  <div>
+ return (
+    <>
       <Header />
-
-      <div>
-      </div>
-  </div>
+      <main className={styles.container}>
+          <div className={styles.postsContainer}>
+            {postsPagination.results.length > 0 ? postsPagination.results.map((post) => {
+            return (
+              <a key={post.uid!}>
+                  <strong className={commonStyles['mini-title']}>
+                    {post.data.title}
+                  </strong>
+                  <p className={commonStyles.text}>
+                    {post.data.subtitle}
+                  </p>
+                  <div className={styles.infoContainer}>
+                    <div>
+                      <FiCalendar className={commonStyles.info} />
+                      <span className={commonStyles.info}>{format(
+                        new Date(post.first_publication_date),
+                        'DD MMM YYYY',
+                        {
+                          locale: ptBR,
+                        }
+                      )}</span>
+                    </div>
+                    <div>
+                      <FiUser className={commonStyles.info} />
+                      <span className={commonStyles.info}>{post.data.author}</span>
+                    </div>
+                  </div>
+              </a>
+            )
+          }) : null}
+            {postsPagination.next_page ?
+              <button className={styles.loadButton}>Carregar mais posts</button> 
+            : null}
+          </div>
+      </main>
+  </>
  )
+}
 
 export const getStaticProps = async () => {
   const prismic = getPrismicClient({});
